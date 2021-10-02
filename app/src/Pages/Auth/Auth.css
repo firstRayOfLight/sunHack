@@ -75,3 +75,15 @@ body{
         transform: rotate(360deg);
     }
 }
+
+
+.loginBtn {
+    padding: 20px 30px;
+    background-color: #fff;
+    color: #000;
+    font-weight: 900;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 1rem;
+}

@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import "./Redirect.css";
+import {setUser} from "../../../auth.slice"
+import {useDispatch} from "react-redux"
+import {useHistory} from "react-router-dom"
 
 function RedirectUser(props) {
+
+    const dispatch = useDispatch()
+    const history = useHistory()
+
 
     useEffect(() => {
         // After requesting Github access, Github redirects back to your app with a code parameter
@@ -28,11 +35,16 @@ function RedirectUser(props) {
                 }
             })
             .then(async res => {
-                const {data} = await axios("http://localhost:8080/user",{
-                    method: "POST",
-                    data: {access_token: res.data.split("=")[1].split("&")[0]}
+                const {data} = await axios("https://api.github.com/user",{
+                    method: "GET",
+                    headers: {"Authorization": `token ${res.data.split("=")[1].split("&")[0]}`}
                 })
-                console.log(data)
+                const {avatar_url,name} = data;
+                const user = {avatar_url,name}
+                localStorage.setItem("user",JSON.stringify(user))
+                dispatch(setUser(user))
+                history.push("/Host")
+                // console.log(data)
             }).catch(e => {
                 console.log(e.message)
             })

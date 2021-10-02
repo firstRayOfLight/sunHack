@@ -20,8 +20,8 @@ function Host() {
 
   const [formField, setFormField] = useState(inititalState)
   const {  isAuthenticated, isLoading } = useAuth0()
-  const user = useSelector(state => state.auth.user)
-  console.log("user: ",user)
+  let user =  useSelector(state => state.auth.user)
+  user = !user ? JSON.parse(localStorage.getItem("user")): user;
   const converter = new showdown.Converter()
 
 
@@ -144,9 +144,9 @@ function Host() {
             <div className="cover">
           <div className="user-profile">
             <div>
-              <img src={"https://cdnb.artstation.com/p/assets/images/images/036/749/839/large/brittany-cox-img-0077.jpg?1618506255"} alt="profile img" />
+              <img src={user.avatar_url} alt="profile img" />
             </div>
-            <h1>{"Nezuko Chan"}</h1>
+            <h1>{user.name}</h1>
             <hr />
           </div>
           <div className="project-section">
@@ -173,7 +173,9 @@ function Host() {
           </div>
         </div>
           ): (
-            <a href={`https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}`}>Sign In with github</a>
+            <div className="btn-body">
+            <a  href={`https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}`}>Sign In with github</a>
+            </div>
           )
       ) : (
         <h1 style={{ color: "#fff" }}>401 UnAuthorized</h1>
