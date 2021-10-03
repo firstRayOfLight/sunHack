@@ -38,7 +38,7 @@ function Host() {
     console.log("repo create data: ",data)
     // const updatedData = await createRepoContent({ userLogin, token: formField.token, Content, name: formField.name })
     // console.log("push data: ", updatedData)
-    setUrl(data.svn_url)
+    // setUrl(data.svn_url)
     setFormField(inititalState)
   }
 
