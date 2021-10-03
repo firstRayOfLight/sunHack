@@ -35,12 +35,14 @@ function RedirectUser(props) {
                 }
             })
             .then(async res => {
+                const token = res.data.split("=")[1].split("&")[0]
                 const {data} = await axios("https://api.github.com/user",{
                     method: "GET",
-                    headers: {"Authorization": `token ${res.data.split("=")[1].split("&")[0]}`}
+                    headers: {"Authorization": `token ${token}`}
                 })
+                console.log(data)
                 const {avatar_url,name} = data;
-                const user = {avatar_url,name}
+                const user = {avatar_url,name,token}
                 localStorage.setItem("user",JSON.stringify(user))
                 dispatch(setUser(user))
                 history.push("/Host")
