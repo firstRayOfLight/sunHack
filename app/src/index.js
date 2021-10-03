@@ -13,7 +13,7 @@ ReactDOM.render(
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri="https://hopeful-franklin-530dae.netlify.app/Home"
+      redirectUri="https://amazing-lovelace-70c791.netlify.app/Home"
     >
     <Provider store={store}>
       <Router >
