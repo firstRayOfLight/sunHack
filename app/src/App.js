@@ -7,8 +7,6 @@ import RedirectUser from "./Pages/Host/RedirectUser/RedirectUser"
 
 
 function App() {
-
-
   return (
     <>
        <Switch>
