@@ -16,7 +16,7 @@ function Auth() {
      !isAuthenticated ? (
       <div className="auth-overlay">
       <div className="auth-card">
-        <h1 style={{opacity: "0.6",fontSize: "1.6rem"}}>Create a account 👩‍🏫</h1>
+        <h1 style={{opacity: "0.6",fontSize: "1.6rem",color: "#000"}}>Create a account 👩‍🏫</h1>
         <button className="loginBtn" onClick={() => loginWithRedirect()}>Log In with Auth0 </button>
       </div>
     </div>
